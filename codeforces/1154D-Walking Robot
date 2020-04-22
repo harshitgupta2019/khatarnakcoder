@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,b,a,ans=0,m;
+    cin >> n>>b>>a;
+   int a1[n],i;
+   for(i=0;i<n;i++)
+   cin>>a1[i];
+   m=a;
+	for( i = 0; i < n; i++)
+	{
+		if(a == 0 && b == 0)
+			break;
+		else if(a == 0)
+			{
+					if(a1[i] == 1)
+					a=min(a+1,m);
+                 	b--;;
+			}
+		else if(b == 0)
+			a--;
+		else if(a1[i] == 1&&a<m)
+		{
+				if(a1[i] == 1) 
+				a=min(a+1,m);
+	            b--;
+		}
+		else 
+		a--;
+		ans++;
+	}
+	cout << ans << endl;
+
+    return 0;
+}
