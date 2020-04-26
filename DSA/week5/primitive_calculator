@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+void primitive_calculator(int number)
+{
+    vector<int32_t> min_steps(number + 1);
+   vector<int32_t> p(number + 1);
+
+    for (int i = 2; i <= number; i++) {
+        min_steps[i] = min_steps[i-1] + 1;
+        p[i] = i - 1;
+        if (i % 3 == 0) {
+            if (min_steps[i/3] < min_steps[i]) {
+                min_steps[i] = min_steps[i/3] + 1;
+                p[i] = i/3;
+            }
+        }
+        if (i % 2 == 0) {
+            if (min_steps[i/2] < min_steps[i]) {
+                min_steps[i] = min_steps[i/2] + 1;
+                p[i] = i/2;
+            }
+        }
+    }
+    cout << min_steps[number] << "\n";
+
+    list<int> s;
+    for (int i = number; i != 0; i = p[i]) {
+        s.push_front(i);
+    }
+    for (auto it = s.begin(); it != s.end(); ++it) {
+        cout << *it  << " ";
+    }
+}
+int main()
+{
+    int number;
+    cin>>number;
+    primitive_calculator(number);
+    return 0;
+}
