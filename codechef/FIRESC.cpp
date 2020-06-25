@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 #define REP(i,n) for (int i = 1; i <= n; i++)
-#define mod 1000000009
+#define mod 1000000007
 #define pb push_back
 #define ff first
 #define ss second
@@ -39,9 +39,10 @@ int main()
 	cin>>t;
 	while(t--)
 	{
-		REP(i,n) ar[i].clear(),vis[i]=0;
+		
 	
 	cin>>n>>m;
+		REP(i,n) ar[i].clear(),vis[i]=0;
 	
 	for(int i=1;i<=m;i++)
 	cin>>a>>b , ar[a].push_back(b) , ar[b].push_back(a);
