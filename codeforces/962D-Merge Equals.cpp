@@ -6,10 +6,10 @@ int main()
 	long long int n;
 	map<long long int,long long int>m;
 	cin>>n;
-	long long int a[n];
-	for(int i=0;i<n;i++)
+	long long int a[n+1];
+	for(int i=1;i<=n;i++)
 	cin>>a[i];
-	for(int i=0;i<n;i++)
+	for(int i=1;i<=n;i++)
 	{
 		if(m[a[i]])
 		{
@@ -22,13 +22,13 @@ int main()
 		m[a[i]]=i;
 	}
 	long long int c=0;
-	for(int i=0;i<n;i++)
+	for(int i=1;i<=n;i++)
 	{
 		if(a[i]!=-1)
 		c++;
 	}
 	cout<<c<<endl;
-	for(int i=0;i<n;i++)
+	for(int i=1;i<=n;i++)
 	{
 		if(a[i]!=-1)
 		cout<<a[i]<<" ";
