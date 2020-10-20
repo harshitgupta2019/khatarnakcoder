@@ -1,96 +1,90 @@
-#include<algorithm>
-#include<cmath>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<functional>
-#include<iomanip>
-#include<iostream>
-#include<map>
-#include<numeric>
-#include<queue>
-#include<set>
-#include<stack>
-#include<string>
-#include<utility>
-#include<vector>
-
-typedef long long int ll;
-typedef unsigned long long int ull;
-
-#define dbg printf("in\n")
-#define nl printf("\n");
-#define N 610
-#define pp pair<int,int>
-#define inf 10000000
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int pb, pc, ps;
-int nb, nc, ns;
-int lb, lc, ls;
-ll fb, fc, fs;
+//{
+#define si(a) scanf("%d",&a)
+#define sii(a,b) scanf("%d %d",&a,&b);
+#define siii(a,b,c) scanf("%d %d %d",&a,&b,&c);
 
-//i have nb,nc,ns brea,cheese and sausage
-//i need lb,lc,ls to make a single burger, assuming i would make x
-//the function returns the extra money needed
-ll price(ll x)
-{
-	fb = max(x*lb - nb, (ll)0);
-	fc = max(x*lc - nc, (ll)0);
-	fs = max(x*ls - ns, (ll)0);
+#define sl(a) scanf("%lld",&a)
+#define sll(a,b) scanf("%lld %lld",&a,&b);
+#define slll(a,b,c) scanf("%lld %lld %lld",&a,&b,&c);
 
-	ll p = fb*pb + fc*pc + fs*ps;
-	return p;
+#define outi(a) printf("%d\n",a)
+#define outii(a,b) printf("%d %d\n",a,b)
+#define outis(a) printf(" %d",a)
+
+#define outl(a) printf("%lld\n",a)
+#define outll(a,b) printf("%lld %lld\n",a,b)
+#define outls(a) printf(" %lld",a)
+
+#define cel(n,k) ((n-1)/k+1)
+#define sets(a) memset(a, -1, sizeof(a))
+#define clr(a) memset(a, 0, sizeof(a))
+#define max(a,b) ((a)>(b)? (a):(b))
+#define min(a,b) ((a)<(b)? (a):(b))
+#define fr(n) for(int i=0;i<n;i++)
+#define fr1(n) for(int i=1;i<=n;i++)
+#define pb push_back
+#define all(v) v.begin(),v.end()
+#define mp make_pair
+#define ff first
+#define ss second
+#define INF 10000007
+#define fastIO() ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+typedef long long i64;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<long long,long long> pll;
+//}
+
+i64 a[3], p[3], r[3], n, m, k;
+char s[103];
+
+int can(i64 q){
+    i64 rem= k;
+
+    fr(3){
+        i64 rs= q*r[i]- a[i];
+        rs= max(0,rs);
+
+        i64 req= rs*p[i];
+
+        if(rem<req)  return 0;
+        rem-= req;
+    }
+
+    return 1;
 }
 
-int main()
-{
-	freopen("in2.txt", "r", stdin);
+int main(){
+    scanf("%s",s);
 
-	int i, j, k;
-	int n, m;
-	ll r;
-	string s;
+    fr(strlen(s)){
+        if(s[i]=='B')
+            r[0]++;
+        else if(s[i]=='S')
+            r[1]++;
+        else
+            r[2]++;
+    }
 
-	cin >> s;
+    fr(3)
+        sl(a[i]);
+    fr(3)
+        sl(p[i]);
 
-	n = s.length();
-	lb = lc = ls = 0;
-	for (i = 0; i < n; i++)
-	{
-		if (s[i] == 'B')lb++;
-		else if (s[i] == 'C')lc++;
-		else ls++;
-	}
+    sl(k);
 
-	cin >> nb >> ns >> nc;
-	cin >> pb >> ps >> pc;
-	cin >> r;
+    i64 lo= 0, hi= 1e14;
 
-	//binary search
-	ll high, low, mid, z, ans = 0;
-	low = 0, high = r + 1000, mid = 0;
+    while(lo<hi){
+        i64 mid= (lo+hi+1)/2;
 
-	while (low <= high)
-	{
-		mid = (low + high) / 2;
+        if(can(mid))  lo= mid;
+        else  hi= mid-1;
+    }
 
-		z = price(mid);
-		if (z == r)
-		{
-			cout << mid << endl;
-			return 0;
-		}
-
-		if (z > r)
-			high = mid - 1;
-
-		else
-			low = mid + 1, ans = mid;
-	}
-
-	cout << ans << endl;
-
-	return 0;
+    outl(lo);
 }
