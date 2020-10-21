@@ -27,7 +27,7 @@ using namespace std;
 
 int main()
 {
-    freopen("in.txt", "r", stdin);
+   // freopen("in.txt", "r", stdin);
 
     int i, j, k;
     int n, m, q;
