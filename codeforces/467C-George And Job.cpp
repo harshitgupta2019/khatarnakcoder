@@ -1,5 +1,4 @@
-s (24 sloc)  566 Bytes
-  
+ 
 #include<bits/stdc++.h>
 using namespace std;
 
